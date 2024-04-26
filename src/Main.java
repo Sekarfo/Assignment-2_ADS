@@ -1,15 +1,15 @@
+import Lists.MyArrayList;
 import Lists.MyLinkedList;
 public class Main {
     public static void main(String[] args) {
-        MyLinkedList<Integer> ml=new MyLinkedList();
-        ml.add(1);
-        ml.add(2);
-        ml.add(3);
-        ml.add(4);
-        ml.add(5);
-        ml.add(1,150);
-        ml.get(1);
-        ml.getFirst();
-        ml.display();
+        MyArrayList<Integer> ma= new MyArrayList<>();
+        ma.add(10);
+        ma.add(2);
+        ma.add(65);
+        ma.add(8);
+        ma.add(1);
+        ma.sort();
+        ma.display();
+
     }
 }

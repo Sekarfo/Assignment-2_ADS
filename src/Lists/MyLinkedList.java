@@ -4,31 +4,39 @@ import Lists.MyList;
 
 import java.util.Iterator;
 
-public class MyLinkedList<T> implements MyList<T> {
+
+
+
+public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T> {
     private Node<T> head;
     private int size;
+    private Node<T> tail;
+
+
 
     public MyLinkedList() {
         head = null;
         size = 0;
+        tail=null;
     }
 
     @Override
     public void add(T data) {
+        size++;
 
 
         Node node = new Node(data);
         if (head == null) {
-            head = node;
+            head =tail= node;
+            return;
         }
-        else {
-            Node<T> currentNode = head;
-            while (currentNode.next != null){
-                currentNode = currentNode.next;
-            }
-            currentNode.next = node;
-        }
-        size++;
+
+        tail.next= node;
+        node.prev=  tail;
+        tail=node;
+
+
+
 
     }
     private void checkIndex(int index) {
@@ -49,7 +57,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-        checkIndex(index);
+        checkIndex(index);  
         Node<T> newNode = new Node<>(item);
         Node<T> currentNode = head;
         for (int i = 0; i < index - 1; i++) {
@@ -129,12 +137,46 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void sort() {
+        if (head == null || head.next == null) {
+            return;
+        }
+            boolean swapped;
+            Node<T> node;
 
-    }
+            if (head == null)
+                return;
+
+            do {
+                swapped = false;
+                node = head;
+
+                while (node.next != null) {
+                    if (node.data.compareTo(node.next.data) > 0) {
+                        T t = node.next.data;
+                        node.next.data = node.data;
+                        node.data = t;
+                        swapped = true;
+                    }
+                    node = node.next;
+                }
+            } while (swapped);
+        }
+
+
 
     @Override
     public int indexOf(T item) {
-        return 0;
+        Node<T> node = head;
+        int i =0;
+        while(node.next!=null){
+            i++;
+            if(node.data==item){
+                return i;
+            }
+
+
+        }
+      return -1;
     }
 
     @Override
@@ -154,7 +196,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void display() {
-        Node node = head;
+        Node<T> node = head;
         while(node.next!=null){
             System.out.print(node.data+" ");
             node = node.next;
@@ -177,4 +219,23 @@ public class MyLinkedList<T> implements MyList<T> {
     public Iterator iterator() {
         return null;
     }
+    private static class Node<T> {
+        T data;
+        Node<T> prev;
+        Node<T> next;
+
+        public Node(T item) {
+            this.data = item;
+            prev = null;
+            next = null;
+        }
+
+        public Node(T item, Node<T> prev, Node<T> next) {
+            this.data = item;
+            this.prev = prev;
+            this.next = next;
+        }
+    }
+
+
 }

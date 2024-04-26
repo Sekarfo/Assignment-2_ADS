@@ -2,7 +2,7 @@ package Lists;
 
 import java.util.Iterator;
 
-public class MyArrayList<T> implements MyList<T> {
+public class MyArrayList<T extends Object & Comparable<T>>  implements MyList<T> {
         private T[] arr ;
         private int size;
         private final int DEFAULT_capacity=5;
@@ -123,6 +123,13 @@ public class MyArrayList<T> implements MyList<T> {
 
         @Override
         public void sort () {
+                for (int i = 0; i < size - 1; i++)
+                        for (int j = i + 1; j < size; j++)
+                                if (arr[i].compareTo(arr[j]) > 0) {
+                                        T t = arr[j];
+                                        arr[j] = arr[i];
+                                        arr[i] = t;
+                                }
 
         }
 
@@ -149,8 +156,10 @@ public class MyArrayList<T> implements MyList<T> {
         }
 
         @Override
-        public T[] toArray () {
-            return arr;
+        public T[] toArray () { T[] array = (T[]) new Object[size];
+                for (int i = 0; i < size; i++)
+                        array[i] = arr[i];
+                return array;
         }
 
         @Override
@@ -175,9 +184,27 @@ public class MyArrayList<T> implements MyList<T> {
         }
 
 
+
         @Override
         public Iterator iterator() {
-                return null;
+                return new MyIterator();
+        }
+        private class MyIterator implements Iterator<T> {
+                int index=0;
+
+                public MyIterator() {
+                        this.index = index;
+                }
+
+                @Override
+                public boolean hasNext() {
+                        return index<size;
+                }
+
+                @Override
+                public T next() {
+                        return arr[index++];
+                }
         }
 }
 

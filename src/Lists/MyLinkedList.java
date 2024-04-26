@@ -181,12 +181,20 @@ public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T>
 
     @Override
     public int lastIndexOf(T item) {
-        return 0;
+        Node<T> node = tail;
+        int t = -1;
+        for (int i = 0; i < size; i++) {
+            if (node.data.equals(item))
+                t = i;
+            node = node.prev;
+        }
+        return t;
     }
+
 
     @Override
     public boolean exists(T item) {
-        return false;
+        return indexOf(item) != -1;
     }
 
     @Override

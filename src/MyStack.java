@@ -1,28 +1,45 @@
 import Lists.MyList;
 
-public class MyStack<T>  {
-    private final MyList<T> list;
 
-    public MyStack(MyList<T> list) {
-        this.list = list;
+class MyStack<T> {
+    private Node<T> top;
+    private int size;
+
+    public MyStack() {
+        this.top = null;
+        this.size = 0;
     }
 
-    public void push(T t) {
-        list.addLast(t);
-    }
-
-    public T pop() {
-        T t = list.getLast();
-        list.removelast();
-        return t;
-    }
-
-    public T get() {
-        return list.getLast();
+    public boolean empty() {
+        return size == 0;
     }
 
     public int size() {
-        return list.size();
+        return size;
+    }
+
+    public T peek() {
+        if (empty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return top.data;
+    }
+
+    public void push(T data) {
+        Node<T> newNode = new Node<>(data);
+        newNode.next = top;
+        top = newNode;
+        size++;
+    }
+
+    public T pop() {
+        if (empty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        T data = top.data;
+        top = top.next;
+        size--;
+        return data;
     }
 }
-}
+

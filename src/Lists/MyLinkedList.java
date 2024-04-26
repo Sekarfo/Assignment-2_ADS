@@ -190,8 +190,14 @@ public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T>
     }
 
     @Override
-    public Object[] toArray() {
-        return new Object[0];
+    public T[] toArray() {
+        T[] array = (T[]) new Object[size];
+        Node<T> node = head;
+        for (int i = 0; i < size; i++) {
+            array[i] = node.data;
+            node = node.next;
+        }
+        return array;
     }
 
     @Override

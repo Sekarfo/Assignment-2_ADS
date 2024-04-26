@@ -222,8 +222,29 @@ public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T>
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<T> iterator() {
+        return new MyIterator();
+    }
+
+
+    private class MyIterator implements Iterator<T> {
+        Node<T> front;
+
+        public MyIterator() {
+            front = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return front != null;
+        }
+
+        @Override
+        public T next() {
+            Node<T> node = front;
+            front = front.next;
+            return node.data;
+        }
     }
     private static class Node<T> {
         T data;

@@ -1,7 +1,6 @@
 package Lists;
 
-import Lists.MyList;
-
+import java.util.Comparator;
 import java.util.Iterator;
 
 
@@ -9,7 +8,7 @@ import java.util.Iterator;
 
 public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T> {
     private Node<T> head;
-    private int size;
+    private int size=0;
     private Node<T> tail;
 
 
@@ -140,27 +139,27 @@ public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T>
         if (head == null || head.next == null) {
             return;
         }
-            boolean swapped;
-            Node<T> node;
+        boolean swapped;
+        Node<T> node;
 
-            if (head == null)
-                return;
+        if (head == null)
+            return;
 
-            do {
-                swapped = false;
-                node = head;
+        do {
+            swapped = false;
+            node = head;
 
-                while (node.next != null) {
-                    if (node.data.compareTo(node.next.data) > 0) {
-                        T t = node.next.data;
-                        node.next.data = node.data;
-                        node.data = t;
-                        swapped = true;
-                    }
-                    node = node.next;
+            while (node.next != null) {
+                if (node.data.compareTo(node.next.data) > 0) {
+                    T t = node.next.data;
+                    node.next.data = node.data;
+                    node.data = t;
+                    swapped = true;
                 }
-            } while (swapped);
-        }
+                node = node.next;
+            }
+        } while (swapped);
+    }
 
 
 

@@ -1,22 +1,24 @@
-import Lists.MyArrayList;
-import Lists.MyLinkedList;
+package DataStructure;
 
-import java.sql.SQLOutput;
+import DataStructure.MyMinHeap;
+import DataStructure.MyQueue;
+import DataStructure.MyStack;
+
 
 public class Main {
     public static void main(String[] args) {
             MyQueue<Integer> queue = new MyQueue<>();
         System.out.println("        queue test                ");
 
-            System.out.println("queue empty " + queue.isEmpty());
+            System.out.println("queue empty " + queue.empty());
             System.out.println("queue size: " + queue.size());
-
             queue.enqueue(1);
+            queue.enqueue(4);
             queue.enqueue(2);
-            queue.enqueue(3);
-            queue.dequeue();
+
 
             System.out.println("queue peek "+queue.peek());
+        System.out.println("dequeue "+ queue.dequeue());
 
         System.out.println("                        ");
         System.out.println("                        ");
@@ -46,6 +48,7 @@ public class Main {
 
 
         System.out.println("Is stack empty? " + stack.empty());
+        System.out.println();
 
         System.out.println("                        ");
         System.out.println("                        ");
@@ -68,6 +71,7 @@ public class Main {
 
         System.out.println("Extracting min element: " + minHeap.extractMin());
         System.out.println("Min heap after extraction:");
+        System.out.println("Is MinHeap empty "+minHeap.isEmpty());
         minHeap.printHeap();
 
 

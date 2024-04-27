@@ -1,3 +1,5 @@
+package DataStructure;
+
 import Lists.MyArrayList;
 import Lists.MyList;
 public class MyMinHeap {
@@ -76,7 +78,6 @@ public class MyMinHeap {
 
 
     public int peekMin() {
-
         return heap.get(0);
     }
 

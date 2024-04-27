@@ -1,5 +1,7 @@
 package Lists;
 
+import java.util.Comparator;
+
 public interface MyList<T>  extends  Iterable<T> {
     void add(T item);
     void set(int index, T item);
@@ -13,6 +15,8 @@ public interface MyList<T>  extends  Iterable<T> {
     void removeFirst();
     void removelast();
     void sort();
+
+
     int indexOf(T item);
     int lastIndexOf(T item);
     boolean exists(T item);

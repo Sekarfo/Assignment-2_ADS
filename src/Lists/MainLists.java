@@ -13,6 +13,7 @@ public class MainLists {
         System.out.println("get size "+ma.size());
         System.out.println("get element index 1: "+ma.get(1));
         System.out.println("get last "+ ma.getLast());
+        System.out.println("index of 1: "+ma.indexOf(1));
         System.out.println("get first "+ ma.getFirst());
         System.out.println("array list");
         ma.display();
@@ -21,6 +22,17 @@ public class MainLists {
         System.out.println();
         System.out.println("array list after remove index:1 and sort ");
         ma.display();
+        System.out.println(" ");
+        System.out.println("Set element at index 2 element 5 amd add first elemt 3");
+        ma.set(2,5);
+        ma.addFirst(3);
+        ma.display();
+        System.out.println();
+        System.out.println("exist element 5-"+ma.exists(5)+"    last index of 5:"+ma.lastIndexOf(5));
+        System.out.println("index Of 1:"+ma.indexOf(1));
+
+
+
         System.out.println("                      ");
         System.out.println("                      ");
         System.out.println("                      ");
@@ -69,5 +81,15 @@ public class MainLists {
         System.out.println("sorted linked list ");
         ml.display();
 
+        System.out.println();
+        System.out.println("set at index 1 element 2 and add first element 3");
+        ml.set(1,2);
+        ml.addFirst(3);
+        ml.display();
+
+
+        System.out.println();
+        System.out.println("is exist element 3-"+ml.exists(3)+" last index of 3:"+ ml.lastIndexOf(3));
+        System.out.println("indexof 1:"+ml.indexOf(1));
     }
 }

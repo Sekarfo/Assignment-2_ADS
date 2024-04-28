@@ -165,17 +165,19 @@ public class MyLinkedList<T extends Object & Comparable<T>> implements MyList<T>
 
     @Override
     public int indexOf(T item) {
-        Node<T> node = head;
-        int i =0;
-        while(node.next!=null){
-            i++;
-            if(node.data==item){
-                return i;
+        Node current = head;
+        int index = 0;
+        while (current != null) {
+            if (current == null){
+                return-1;
             }
-
-
+            if(current.data == item) {
+                return index;
+            }
+            current = current.next;
+            index++;
         }
-      return -1;
+        return -1;
     }
 
     @Override
